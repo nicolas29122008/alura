@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu digimon favorito</title>
     <style>
-
         body {
-            font-family: 'Times New Roman', Times, serif; /* Fonte serifada como na imagem */
+            font-family: 'Times New Roman', Times, serif;
             margin: 0;
             padding: 20px;
             display: flex;
@@ -16,7 +15,6 @@
             align-items: center;
             background-color: #f4f4f4;
         }
-
      
         header {
             background-color: #a06800; 
@@ -25,6 +23,7 @@
             max-width: 800px;
             padding: 40px 20px;
             box-sizing: border-box;
+            text-align: center;
         }
 
         header h1 {
@@ -46,6 +45,13 @@
             box-sizing: border-box;
         }
 
+        .post {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+
         h2 {
             color: #000000;
             font-size: 32px;
@@ -55,38 +61,129 @@
         .author {
             color: #333;
             font-size: 18px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
-        img {
-            width: 700px;
-            height: 250px;
-        }
         .post-img {
             width: 100%;
             max-width: 100%;
             height: auto;
             margin-bottom: 20px;
             display: block;
+            border-radius: 4px;
         }
 
         .content {
             color: #000000;
             font-size: 20px;
             line-height: 1.4;
+            margin-bottom: 20px;
+        }
+
+        /* Estilização dos Botões de Interação */
+        .interactions {
+            display: flex;
+            gap: 15px;
+            border-top: 1px solid rgba(0, 0, 0, 0.2);
+            padding-top: 15px;
+        }
+
+        .btn-interact {
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .btn-interact:hover {
+            background-color: #333333;
+        }
+
+        .btn-interact.active-like {
+            background-color: #d32f2f;
+        }
+
+        .btn-interact.active-fav {
+            background-color: #f57c00;
         }
     </style>
 </head>
+<body>
 
     <header>
         <h1>Meu Digimon favorito</h1>
         <p>Vou compartilhar conhecimentos sobre digimons</p>
-        <img src="https://a.storyblok.com/f/178900/1280x720/63d741309f/digimon-data-squad-kv-large.jpg/m/filters:quality(95)format(webp)" alt="Digimon">
-        <main>
-<h2>Meu primeiro post</h2>
-<p>Por: Nicolas soares</p>
-<p>Boas-vindas ao meu novo blog! Aqui vou compartilhar sobre meus digimons fav</p>
-</main>
-        <body>
     </header>
 
+    <main>
+        <div class="post">
+            <h2>Meu primeiro post</h2>
+            <p class="author">Por: Nicolas soares</p>
+            <div class="content">
+                <p>Boas-vindas ao meu novo blog! Aqui vou compartilhar sobre meus digimons fav</p>
+            </div>
+        </div>
+
+        <div class="post">
+            <h2>Destaque do Dia: Agumon!</h2>
+            <p class="author">Por: Nicolas soares</p>
+            
+            <img class="post-img" src="https://a.storyblok.com/f/178900/1280x720/63d741309f/digimon-data-squad-kv-large.jpg/m/filters:quality(95)format(webp)" alt="Digimon">
+            
+            <div class="content">
+                <p>O Agumon é um Digimon do tipo Réptil e um dos monstros digitais mais icônicos de toda a franquia. Com seu visual de dinossauro laranja e seu famoso ataque "Chama Neném" (Baby Flame), ele conquista o coração de qualquer fã desde a primeira temporada!</p>
+            </div>
+
+            <div class="interactions">
+                <button class="btn-interact" id="likeBtn" onclick="toggleLike()">
+                    ❤️ Curtir (<span id="likeCount">0</span>)
+                </button>
+                <button class="btn-interact" id="favBtn" onclick="toggleFav()">
+                    ⭐ Favoritar (<span id="favCount">0</span>)
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let liked = false;
+        let faved = false;
+
+        function toggleLike() {
+            const likeBtn = document.getElementById('likeBtn');
+            const likeCount = document.getElementById('likeCount');
+            
+            if (!liked) {
+                likeCount.textContent = '1';
+                likeBtn.classList.add('active-like');
+                liked = true;
+            } else {
+                likeCount.textContent = '0';
+                likeBtn.classList.remove('active-like');
+                liked = false;
+            }
+        }
+
+        function toggleFav() {
+            const favBtn = document.getElementById('favBtn');
+            const favCount = document.getElementById('favCount');
+            
+            if (!faved) {
+                favCount.textContent = '1';
+                favBtn.classList.add('active-fav');
+                faved = true;
+            } else {
+                favCount.textContent = '0';
+                favBtn.classList.remove('active-fav');
+                faved = false;
+            }
+        }
+    </script>
+
+</body>
+</html>
